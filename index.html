@@ -1,262 +1,111 @@
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-    <meta name="description"
-          content="Discover Zimbabwe's tourist destinations with ZimKhaya.">
-
-    <title>ZimKhaya | Explore Zimbabwe</title>
-
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Discover Zimbabwe's tourist destinations with ZimKhaya.">
+  <title>ZimKhaya | Explore Zimbabwe</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-    <!-- Navigation -->
-    <header>
-        <nav class="navbar">
-            <h1 class="logo">ZimKhaya</h1>
+  <!-- Navigation (stays at the top while scrolling) -->
+  <header class="navbar">
+    <h1 class="logo">ZimKhaya</h1>
+    <nav class="nav-links">
+      <a href="#home">Home</a>
+      <a href="#destinations">Destinations</a>
+      <a href="#about">About Us</a>
+      <a href="#booking">Book a Trip</a>
+    </nav>
+  </header>
 
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#destinations">Destinations</a></li>
-                <li><a href="#about">About Us</a></li>
-                <li><a href="#booking">Book a Trip</a></li>
-            </ul>
-        </nav>
-    </header>
+  <!-- Welcome banner -->
+  <section id="home" class="hero">
+    <h2>Explore Zimbabwe. Feel at Home.</h2>
+    <p>Discover breathtaking destinations, unforgettable adventures and the natural beauty of Zimbabwe.</p>
+    <a href="#destinations" class="btn">Explore Destinations</a>
+  </section>
 
-    <!-- Welcome Banner -->
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <h2>Explore Zimbabwe. Feel at Home.</h2>
+  <main>
+    <!-- Destinations: data-destination fills in the form when clicked -->
+    <section id="destinations" class="section">
+      <h2>Discover Zimbabwe</h2>
+      <p>Explore some of Zimbabwe's most remarkable tourist attractions.</p>
 
-            <p>
-                Discover breathtaking destinations,
-                unforgettable adventures and the
-                natural beauty of Zimbabwe.
-            </p>
+      <div class="cards">
+        <article class="card">
+          <img src="images/victoria-falls.jpg" alt="Victoria Falls waterfall" loading="lazy">
+          <h3>Victoria Falls</h3>
+          <p>Experience the spectacular Victoria Falls, known locally as Mosi-oa-Tunya, the Smoke That Thunders.</p>
+          <a href="#booking" class="card-btn" data-destination="Victoria Falls">Enquire Now</a>
+        </article>
 
-            <a href="#destinations" class="btn">
-                Explore Destinations
-            </a>
-        </div>
+        <article class="card">
+          <img src="images/hwange.jpg" alt="Elephants at Hwange National Park" loading="lazy">
+          <h3>Hwange National Park</h3>
+          <p>Discover incredible wildlife, breathtaking landscapes and memorable safari experiences.</p>
+          <a href="#booking" class="card-btn" data-destination="Hwange National Park">Enquire Now</a>
+        </article>
+
+        <article class="card">
+          <img src="images/great-zimbabwe.jpg" alt="Great Zimbabwe stone ruins" loading="lazy">
+          <h3>Great Zimbabwe</h3>
+          <p>Explore Zimbabwe's fascinating history through its ancient stone architecture and cultural heritage.</p>
+          <a href="#booking" class="card-btn" data-destination="Great Zimbabwe">Enquire Now</a>
+        </article>
+      </div>
     </section>
 
-    <main>
+    <!-- About -->
+    <section id="about" class="section about">
+      <h2>About ZimKhaya</h2>
+      <p>ZimKhaya is a tourism information platform designed to make exploring Zimbabwe easier and more convenient. We help visitors discover attractions, learn about destinations and submit travel enquiries from one central website.</p>
+    </section>
 
-        <!-- Destinations -->
-        <section id="destinations" class="destinations">
+    <!-- Booking enquiry: Web3Forms emails each submission to the inbox linked to this access key -->
+    <section id="booking" class="section">
+      <h2>Plan Your Adventure</h2>
+      <p>Interested in visiting Zimbabwe? Complete the form below to send your travel enquiry.</p>
 
-            <h2>Discover Zimbabwe</h2>
+      <form action="https://api.web3forms.com/submit" method="POST">
+        <input type="hidden" name="access_key" value="884318c5-2633-4f47-98f5-0f286724bcdb">
+        <input type="hidden" name="subject" value="New ZimKhaya Travel Enquiry">
+        <input type="hidden" name="from_name" value="ZimKhaya Website">
+        <input type="checkbox" name="botcheck" class="hidden"> <!-- spam trap: bots tick it, people never see it -->
 
-            <p>
-                Explore some of Zimbabwe's most
-                remarkable tourist attractions.
-            </p>
+        <label for="name">Full Name</label>
+        <input type="text" id="name" name="name" placeholder="Enter your full name" required>
 
-            <div class="destination-container">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" name="email" placeholder="Enter your email address" required>
 
-                <article class="destination-card">
-                    <img src="images/victoria-falls.jpg"
-                         alt="Victoria Falls waterfall">
+        <label for="destination">Preferred Destination</label>
+        <select id="destination" name="destination" required>
+          <option value="">Select Destination</option>
+          <option>Victoria Falls</option>
+          <option>Hwange National Park</option>
+          <option>Great Zimbabwe</option>
+        </select>
 
-                    <div class="card-content">
-                        <h3>Victoria Falls</h3>
+        <label for="date">Preferred Travel Date</label>
+        <input type="date" id="date" name="travel_date" required>
 
-                        <p>
-                            Experience the spectacular
-                            Victoria Falls, known locally
-                            as Mosi-oa-Tunya, the
-                            Smoke That Thunders.
-                        </p>
+        <label for="message">Additional Information</label>
+        <textarea id="message" name="message" rows="5" placeholder="Tell us about your travel plans"></textarea>
 
-                        <a href="#booking" class="card-btn">
-                            Enquire Now
-                        </a>
-                    </div>
-                </article>
+        <p class="note">Your details are only used to reply to your enquiry and are delivered by a third-party form service. Please do not include sensitive personal information.</p>
 
-                <article class="destination-card">
-                    <img src="images/hwange.jpg"
-                         alt="Elephants at Hwange National Park">
+        <button type="submit" class="btn">Submit Enquiry</button>
+      </form>
+    </section>
+  </main>
 
-                    <div class="card-content">
-                        <h3>Hwange National Park</h3>
+  <footer>
+    <p>&copy; 2026 ZimKhaya. Explore Zimbabwe. Feel at Home.</p>
+    <p>Contact: <a href="mailto:nokuegama@gmail.com">nokuegama@gmail.com</a></p>
+  </footer>
 
-                        <p>
-                            Discover incredible wildlife,
-                            breathtaking landscapes
-                            and memorable safari
-                            experiences.
-                        </p>
-
-                        <a href="#booking" class="card-btn">
-                            Enquire Now
-                        </a>
-                    </div>
-                </article>
-
-                <article class="destination-card">
-                    <img src="images/great-zimbabwe.jpg"
-                         alt="Great Zimbabwe stone ruins">
-
-                    <div class="card-content">
-                        <h3>Great Zimbabwe</h3>
-
-                        <p>
-                            Explore Zimbabwe's
-                            fascinating history through
-                            its ancient stone architecture
-                            and cultural heritage.
-                        </p>
-
-                        <a href="#booking" class="card-btn">
-                            Enquire Now
-                        </a>
-                    </div>
-                </article>
-
-            </div>
-        </section>
-
-        <!-- About -->
-        <section id="about" class="about">
-
-            <h2>About ZimKhaya</h2>
-
-            <p>
-                ZimKhaya is a tourism information
-                platform designed to make exploring
-                Zimbabwe easier and more convenient.
-
-                We help visitors discover attractions,
-                learn about destinations and submit
-                travel enquiries from one central
-                website.
-            </p>
-
-        </section>
-
-        <!-- Booking Enquiry -->
-        <section id="booking" class="booking">
-
-            <h2>Plan Your Adventure</h2>
-
-            <p>
-                Interested in visiting Zimbabwe?
-                Complete the form below to send
-                your travel enquiry.
-            </p>
-
-            <form
-                id="bookingForm"
-                action="https://formsubmit.co/YOUR_EMAIL@example.com"
-                method="POST"
-            >
-
-                <input type="hidden"
-                       name="_subject"
-                       value="New ZimKhaya Travel Enquiry">
-
-                <input type="hidden"
-                       name="_template"
-                       value="table">
-
-                <input type="hidden"
-                       name="_captcha"
-                       value="true">
-
-                <label for="name">Full Name</label>
-                <input type="text"
-                       id="name"
-                       name="name"
-                       placeholder="Enter your full name"
-                       required>
-
-                <label for="email">Email Address</label>
-                <input type="email"
-                       id="email"
-                       name="email"
-                       placeholder="Enter your email address"
-                       required>
-
-                <label for="destination">
-                    Preferred Destination
-                </label>
-
-                <select id="destination"
-                        name="destination"
-                        required>
-
-                    <option value="">
-                        Select Destination
-                    </option>
-
-                    <option value="Victoria Falls">
-                        Victoria Falls
-                    </option>
-
-                    <option value="Hwange National Park">
-                        Hwange National Park
-                    </option>
-
-                    <option value="Great Zimbabwe">
-                        Great Zimbabwe
-                    </option>
-
-                </select>
-
-                <label for="date">
-                    Preferred Travel Date
-                </label>
-
-                <input type="date"
-                       id="date"
-                       name="travel_date"
-                       required>
-
-                <label for="message">
-                    Additional Information
-                </label>
-
-                <textarea id="message"
-                          name="message"
-                          rows="5"
-                          placeholder="Tell us about your travel plans"></textarea>
-
-                <p class="privacy-note">
-                    Your information will be used
-                    to respond to your enquiry and
-                    will be processed by our
-                    third-party form delivery service.
-                    Please do not include sensitive
-                    personal information.
-                </p>
-
-                <button type="submit" class="btn">
-                    Submit Enquiry
-                </button>
-
-            </form>
-
-        </section>
-
-    </main>
-
-    <!-- Footer -->
-    <footer>
-        <p>
-            &copy; 2026 ZimKhaya.
-            Explore Zimbabwe. Feel at Home.
-        </p>
-    </footer>
-
-    <script src="script.js"></script>
-
+  <script src="script.js"></script>
 </body>
 </html>

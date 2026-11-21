@@ -1,81 +1,16 @@
-
 // ZimKhaya Website JavaScript
 
-// Get the booking form and its fields
-const bookingForm = document.getElementById("bookingForm");
-const travelDate = document.getElementById("date");
-const destinationSelect =
-    document.getElementById("destination");
+// 1. Stop visitors from picking a travel date in the past
+const today = new Date();
+today.setMinutes(today.getMinutes() - today.getTimezoneOffset()); // use local time, not UTC
+document.getElementById("date").min = today.toISOString().split("T")[0];
 
-const emailInput = document.getElementById("email");
-const replyToInput = document.getElementById("replyTo");
-
-// Prevent selection of previous dates
-if (travelDate) {
-
-    const today = new Date();
-
-    const localDate = new Date(
-        today.getTime() -
-        today.getTimezoneOffset() * 60000
-    );
-
-    travelDate.min = localDate
-        .toISOString()
-        .split("T")[0];
-}
-
-// Automatically select the destination
-// when a visitor clicks Enquire Now
-const destinationButtons =
-    document.querySelectorAll("[data-destination]");
-
-destinationButtons.forEach(function(button) {
-
-    button.addEventListener("click", function() {
-
-        const selectedDestination =
-            button.getAttribute("data-destination");
-
-        destinationSelect.value = selectedDestination;
-
-    });
-
+// 2. When "Enquire Now" is clicked, pre-select that destination in the form
+document.querySelectorAll("[data-destination]").forEach(function (button) {
+  button.addEventListener("click", function () {
+    document.getElementById("destination").value = button.dataset.destination;
+  });
 });
 
-// Check the form before submission
-if (bookingForm) {
-
-    bookingForm.addEventListener("submit", function(event) {
-
-        // Validate destination
-        if (!destinationSelect.value) {
-
-            event.preventDefault();
-
-            alert(
-                "Please select your preferred destination."
-            );
-
-            return;
-        }
-
-        // Validate travel date
-        if (travelDate.value < travelDate.min) {
-
-            event.preventDefault();
-
-            alert(
-                "Please select a current or future travel date."
-            );
-
-            return;
-        }
-
-        // Set the visitor's email for replies
-        replyToInput.value = emailInput.value;
-
-        // Allow FormSubmit to send the enquiry
-    });
-
-}
+// The browser checks all other fields itself using the "required", "type" and "min"
+// attributes in index.html, so no extra validation code is needed.

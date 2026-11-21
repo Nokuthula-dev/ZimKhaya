@@ -1,316 +1,77 @@
-
 /* ZimKhaya Website Styles */
 
-/* General Settings */
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+/* Colours are stored once here and reused below */
+:root {
+  --green: #174b3a;
+  --green-light: #276f55;
+  --gold: #d5aa55;
+  --gold-light: #ebc879;
 }
 
-html {
-    scroll-behavior: smooth;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+body { font-family: Arial, sans-serif; background: #f8f8f4; color: #333; line-height: 1.6; }
+h2 { font-size: 34px; color: var(--green); margin-bottom: 15px; }
 
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f8f8f4;
-    color: #333333;
-    line-height: 1.6;
-}
-
-/* Navigation Bar */
-
+/* Navigation bar (sticky so it is always visible) */
 .navbar {
-    background-color: #174b3a;
-    padding: 20px 8%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 20px;
+  position: sticky; top: 0; z-index: 10;
+  background: var(--green); padding: 18px 8%;
+  display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px;
 }
+.logo { font-size: 30px; color: white; }
+.nav-links { display: flex; gap: 25px; flex-wrap: wrap; }
+.nav-links a { color: white; text-decoration: none; font-weight: bold; }
+.nav-links a:hover { color: var(--gold-light); }
 
-.logo {
-    font-size: 30px;
-    color: white;
-    font-weight: bold;
-}
-
-.nav-links {
-    list-style: none;
-    display: flex;
-    gap: 25px;
-    flex-wrap: wrap;
-}
-
-.nav-links a {
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-    transition: color 0.3s;
-}
-
-.nav-links a:hover,
-.nav-links a:focus {
-    color: #e5c57c;
-}
-
-/* Homepage Banner */
-
+/* Welcome banner */
 .hero {
-    min-height: 80vh;
-
-    background:
-        linear-gradient(
-            rgba(0, 0, 0, 0.55),
-            rgba(0, 0, 0, 0.55)
-        ),
-        url("images/victoria-falls.jpg");
-
-    background-size: cover;
-    background-position: center;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-
-    padding: 50px 20px;
+  min-height: 80vh; padding: 50px 20px; color: white; text-align: center;
+  background: linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.55)), url("images/victoria-falls.jpg") center / cover;
+  display: flex; flex-direction: column; justify-content: center; align-items: center;
 }
-
-.hero-content {
-    max-width: 800px;
-    color: white;
-}
-
-.hero h2 {
-    font-size: 46px;
-    margin-bottom: 20px;
-}
-
-.hero p {
-    font-size: 20px;
-    margin-bottom: 30px;
-}
+.hero h2 { font-size: 46px; color: white; }
+.hero p { font-size: 20px; max-width: 800px; margin-bottom: 30px; }
 
 /* Buttons */
+.btn, .card-btn { display: inline-block; text-decoration: none; font-weight: bold; border: none; border-radius: 6px; cursor: pointer; }
+.btn { background: var(--gold); color: #172b22; padding: 14px 28px; font-size: 16px; }
+.btn:hover { background: var(--gold-light); }
+.card-btn { background: var(--green); color: white; padding: 10px 18px; }
+.card-btn:hover { background: var(--green-light); }
 
-.btn {
-    display: inline-block;
-    background-color: #d5aa55;
-    color: #172b22;
-    padding: 14px 28px;
-    border: none;
-    border-radius: 6px;
-    text-decoration: none;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
+/* Page sections */
+.section { padding: 75px 8%; text-align: center; }
+.about { background: #e5ede5; }
+.about p { max-width: 850px; margin: auto; }
 
-.btn:hover,
-.btn:focus {
-    background-color: #ebc879;
-}
+/* Destination cards */
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top: 40px; }
+.card { background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 5px 20px rgba(0,0,0,.12); text-align: left; padding-bottom: 22px; transition: transform .3s; }
+.card:hover { transform: translateY(-5px); }
+.card img { width: 100%; height: 230px; object-fit: cover; }
+.card h3, .card p, .card a { margin: 15px 22px 0; }
+.card h3 { color: var(--green); font-size: 22px; }
 
-/* Destinations Section */
-
-.destinations {
-    padding: 75px 8%;
-    text-align: center;
-}
-
-.destinations h2,
-.about h2,
-.booking h2 {
-    font-size: 34px;
-    color: #174b3a;
-    margin-bottom: 15px;
-}
-
-.destination-container {
-    display: grid;
-    grid-template-columns:
-        repeat(auto-fit, minmax(250px, 1fr));
-    gap: 30px;
-    margin-top: 40px;
-}
-
-/* Destination Cards */
-
-.destination-card {
-    background-color: white;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.12);
-    text-align: left;
-    transition: transform 0.3s;
-}
-
-.destination-card:hover {
-    transform: translateY(-5px);
-}
-
-.destination-card img {
-    width: 100%;
-    height: 230px;
-    object-fit: cover;
-}
-
-.card-content {
-    padding: 22px;
-}
-
-.card-content h3 {
-    color: #174b3a;
-    font-size: 22px;
-    margin-bottom: 12px;
-}
-
-.card-content p {
-    margin-bottom: 20px;
-}
-
-.card-btn {
-    display: inline-block;
-    background-color: #174b3a;
-    color: white;
-    padding: 10px 18px;
-    text-decoration: none;
-    border-radius: 5px;
-}
-
-.card-btn:hover,
-.card-btn:focus {
-    background-color: #276f55;
-}
-
-/* About Section */
-
-.about {
-    background-color: #e5ede5;
-    padding: 75px 12%;
-    text-align: center;
-}
-
-.about p {
-    max-width: 850px;
-    margin: auto;
-}
-
-/* Booking Section */
-
-.booking {
-    padding: 75px 8%;
-    text-align: center;
-}
-
-.booking form {
-    max-width: 550px;
-    margin: 35px auto;
-    padding: 35px;
-    background-color: white;
-    border-radius: 12px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-    text-align: left;
-}
-
-.booking label {
-    display: block;
-    margin-top: 18px;
-    margin-bottom: 7px;
-    font-weight: bold;
-}
-
-.booking input,
-.booking select,
-.booking textarea {
-    width: 100%;
-    padding: 13px;
-    border: 1px solid #cccccc;
-    border-radius: 6px;
-    font-family: Arial, sans-serif;
-    font-size: 16px;
-    background-color: white;
-}
-
-.booking input:focus,
-.booking select:focus,
-.booking textarea:focus {
-    outline: 2px solid #276f55;
-    outline-offset: 1px;
-}
-
-.booking textarea {
-    resize: vertical;
-}
-
-.booking button {
-    width: 100%;
-    margin-top: 25px;
-}
-
-.privacy-note {
-    margin-top: 20px;
-    font-size: 13px;
-    color: #666666;
-}
-
-.enquiry-note {
-    font-size: 14px;
-    color: #666666;
-    margin-top: 10px;
-}
+/* Booking form */
+form { max-width: 550px; margin: 35px auto 0; padding: 35px; background: white; border-radius: 12px; box-shadow: 0 5px 20px rgba(0,0,0,.1); text-align: left; }
+label { display: block; margin: 18px 0 7px; font-weight: bold; }
+input, select, textarea { width: 100%; padding: 13px; border: 1px solid #ccc; border-radius: 6px; font: inherit; }
+input:focus, select:focus, textarea:focus { outline: 2px solid var(--green-light); }
+textarea { resize: vertical; }
+form button { width: 100%; margin-top: 25px; }
+.note { margin-top: 20px; font-size: 13px; color: #666; }
+.hidden { display: none; }
 
 /* Footer */
+footer { background: var(--green); color: white; text-align: center; padding: 25px; }
+footer a { color: var(--gold-light); }
 
-footer {
-    background-color: #174b3a;
-    color: white;
-    text-align: center;
-    padding: 25px;
-}
-
-footer p {
-    margin-bottom: 5px;
-}
-
-/* Responsive Design */
-
+/* Phones */
 @media (max-width: 600px) {
-
-    .navbar {
-        justify-content: center;
-        text-align: center;
-    }
-
-    .nav-links {
-        justify-content: center;
-        gap: 15px;
-    }
-
-    .hero h2 {
-        font-size: 32px;
-    }
-
-    .hero p {
-        font-size: 17px;
-    }
-
-    .destinations,
-    .about,
-    .booking {
-        padding: 50px 5%;
-    }
-
-    .booking form {
-        padding: 22px;
-    }
-
-    .destination-card img {
-        height: 200px;
-    }
+  .navbar { justify-content: center; position: static; }
+  .hero h2 { font-size: 32px; }
+  .hero p { font-size: 17px; }
+  .section { padding: 50px 5%; }
+  form { padding: 22px; }
 }
